@@ -46,10 +46,11 @@ router.get('/api/snapshot', function(req, res) {
 router.get('/api/historical/:symbol', function(req, res) {
   var today = new Date();
   var yearAgo = new Date(today.getTime() - 1000 * 60 * 60 * 24 * 365);
+  var yearAgoWeek = new Date(yearAgo.getTime() + 1000 * 60 * 60 * 24 * 7);
   yahooFinance.historical({
     symbol: req.params.symbol,
     from: yearAgo.toString(),
-    to: today.toString()
+    to: yearAgoWeek.toString()
   }, function(err, quotes) {
     if (err) {
       res.status(500).send(err);

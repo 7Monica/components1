@@ -8,7 +8,7 @@
   },
   "scripts": {
     "tsc": "tsc -w",
-    "start": "node server/server.js"
+    "start": "npm install; gulp go;"
   },
   "author": "Jason Aden",
   "license": "MIT",

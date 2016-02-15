@@ -16,4 +16,6 @@ import {Component, View} from 'angular2/core'
 })
 export class StockList {
   public stocks: Array<string>;
+
+  constructor() {}
 }

@@ -2,7 +2,7 @@
 import {bootstrap} from 'angular2/platform/browser';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import 'rxjs/Rx';
-import {AppComponent} from './app';
+import {App} from './app';
 
-bootstrap(AppComponent, [HTTP_PROVIDERS])
+bootstrap(App, [HTTP_PROVIDERS])
   .catch(err => console.error(err));
