@@ -1,4 +1,4 @@
-import {Component, View} from 'angular2/core'
+import {Component, View, provide} from 'angular2/core'
 import {StockList} from './stockList'
 import {StocksService} from '../services/StocksService'
 
