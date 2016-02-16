@@ -1,4 +1,3 @@
-//our root app component
 import {Component, View} from 'angular2/core'
 import {StockSearch} from './components/stockSearch';
 
@@ -14,6 +13,4 @@ import {StockSearch} from './components/stockSearch';
   `,
   directives: [StockSearch]
 })
-export class App {
-  constructor() {}
-}
+export class App {}

@@ -4,7 +4,6 @@ import {Http, URLSearchParams} from 'angular2/http';
 
 @Injectable()
 export class StocksService {
-  
   // TS shortcut "public" to put http on this
   constructor(public http:Http) {}
   
