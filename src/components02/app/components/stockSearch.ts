@@ -1,10 +1,12 @@
-import {Component, View, provide} from 'angular2/core'
+import {Component, View, provide, Inject} from 'angular2/core'
 import {StockList} from './stockList'
 import {StocksService} from '../services/StocksService'
 
 @Component({
   selector: 'StockSearch',
-  providers: [StocksService]
+  providers: [StocksService, 
+    provide('SECURITY_KEY', { useValue: 'abc123' })
+  ]
 })
 @View({
   template: `
@@ -22,7 +24,11 @@ export class StockSearch {
   searchText: string;
   stocks: Object[];
   
-  constructor(public stockService:StocksService) {}
+  constructor(public stockService:StocksService, 
+      @Inject('SECURITY_KEY') seckey) {
+
+    console.log('seckey', seckey);
+  }
   
   doSearch() {
     this.stockService.snapshot(this.searchText)
