@@ -1,11 +1,17 @@
 import {Component, View, provide, Inject} from 'angular2/core'
 import {StockList} from './stockList'
 import {StocksService} from '../services/StocksService'
+function showTime() {
+  return function() {
+    return (new Date()).getTime();
+  }
+}
 
 @Component({
   selector: 'StockSearch',
   providers: [StocksService, 
-    provide('SECURITY_KEY', { useValue: 'abc123' })
+    provide('SECURITY_KEY', { useValue: 'abc123' }),
+    provide(showTime, {useFactory: showTime})
   ]
 })
 @View({
@@ -25,9 +31,10 @@ export class StockSearch {
   stocks: Object[];
   
   constructor(public stockService:StocksService, 
-      @Inject('SECURITY_KEY') seckey) {
+    @Inject('SECURITY_KEY') seckey,
+    @Inject(showTime) getCurrentTime) { 
 
-    console.log('seckey', seckey);
+    console.log('seckey', seckey, getCurrentTime());
   }
   
   doSearch() {
