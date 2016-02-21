@@ -1,10 +1,8 @@
 // List people
-import {Component, View, EventEmitter} from 'angular2/core';
+import {Component, View, EventEmitter, Input, Output} from 'angular2/core';
 
 @Component({
-  selector: 'StockList',
-  inputs: ['stocks'],
-  outputs: ['showStock']
+  selector: 'StockList'
 })
 @View({
   template: `
@@ -16,8 +14,8 @@ import {Component, View, EventEmitter} from 'angular2/core';
   `
 })
 export class StockList {
-  public stocks: Array<string>;
-  public showStock: EventEmitter = new EventEmitter();
+  public @Input() stocks: Array<string>;
+  public @Output() showStock: EventEmitter = new EventEmitter();
 
   constructor() {}
 }
