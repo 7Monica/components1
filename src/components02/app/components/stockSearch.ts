@@ -1,5 +1,6 @@
 import {Component, View, provide} from 'angular2/core'
 import {StockList} from './stockList'
+import {StockFull} from './stockFull'
 import {StocksService} from '../services/StocksService'
 
 @Component({
@@ -13,17 +14,18 @@ import {StocksService} from '../services/StocksService'
       <form (submit)="doSearch()">
         <input [(ngModel)]="searchText"/>
       </form>
-      <StockList [stocks]="stocks"></StockList>
+      <StockList [stocks]="stocks" (showStock)="currStock=$event"></StockList>
+      <StockFull *ngIf="currStock" [stock]="currStock"></StockFull>
     </section>
   `,
-  directives: [StockList]
+  directives: [StockList,StockFull]
 })
 export class StockSearch {
   searchText: string;
   stocks: Object[];
+  currStock: Object = undefined;
   
   constructor(public stockService:StocksService) {}
-  
   doSearch() {
     this.stockService.snapshot(this.searchText)
     .subscribe(
