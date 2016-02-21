@@ -7,7 +7,7 @@ import {Component, View} from 'angular2/core'
 })
 @View({
   template: `
-    <ul>
+    <ul class="stock-list">
       <li *ngFor="#stock of stocks">
         <strong>{{stock.symbol}} ({{stock.ask | currency:'USD':true}}):</strong> {{stock.name}}
       </li>
