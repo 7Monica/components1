@@ -1,14 +1,15 @@
-import {Component, View, provide} from 'angular2/core'
-import {StockList} from './stockList'
-import {StocksService} from '../services/StocksService'
+import {Component, View, provide, Inject} from 'angular2/core';
+import {StockList} from './stockList';
+import {StocksService} from '../services/StocksService';
 
 @Component({
   selector: 'StockSearch',
-  providers: [StocksService]
+  viewProviders: [provide('Search', { useClass: StocksService }) ]
 })
 @View({
   template: `
     <section>
+      <ng-content></ng-content>
       <h3>Stock Price & Name Lookup:</h3>
       <form (submit)="doSearch()">
         <input [(ngModel)]="searchText"/>
@@ -22,10 +23,12 @@ export class StockSearch {
   searchText: string;
   stocks: Object[];
   
-  constructor(public stockService:StocksService) {}
+  constructor(@Inject('Search') stocksService) {
+    this.stocksService = stocksService;
+  }
   
   doSearch() {
-    this.stockService.snapshot(this.searchText)
+    this.stocksService.snapshot(this.searchText)
     .subscribe(
       (data) => {this.stocks = data},
       (err) => {console.log('error!', err)}
