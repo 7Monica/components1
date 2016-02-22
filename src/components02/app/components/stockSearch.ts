@@ -26,7 +26,6 @@ export class StockSearch {
   
   constructor(public stockService:StocksService, 
       @Inject('SECURITY_KEY') seckey) {
-
     console.log('seckey', seckey);
   }
   
