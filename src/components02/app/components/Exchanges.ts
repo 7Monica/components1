@@ -16,7 +16,6 @@ import {Component, View, Inject} from 'angular2/core'
 export class Exchanges {
   public exchanges: Array<any>;
   constructor(@Inject('Search') exchanges) {
-    console.log("Exchanges", exchanges);
     this.exchanges = exchanges.snapshot();
   }
 }
