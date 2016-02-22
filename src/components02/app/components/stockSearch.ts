@@ -26,6 +26,7 @@ export class StockSearch {
   currStock: Object = undefined;
   
   constructor(public stockService:StocksService) {}
+  
   doSearch() {
     this.stockService.snapshot(this.searchText)
     .subscribe(
